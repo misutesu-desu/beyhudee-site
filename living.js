@@ -374,7 +374,6 @@
 
   /* ---------- döngü ---------- */
 
-  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
   let onScreen = true, frame = 0;
 
   function tick(now) {
@@ -383,8 +382,7 @@
   }
   function sync() {
     cancelAnimationFrame(frame);
-    if (still) render(TAU * .1);
-    else if (onScreen && !document.hidden) frame = requestAnimationFrame(tick);
+    if (onScreen && !document.hidden) frame = requestAnimationFrame(tick);
   }
 
   new IntersectionObserver(([entry]) => {
@@ -392,10 +390,7 @@
     sync();
   }).observe(band);
   document.addEventListener("visibilitychange", sync);
-  addEventListener("resize", () => {
-    resize();
-    if (still) render(TAU * .1);
-  });
+  addEventListener("resize", resize);
 
   const image = new Image();
   image.crossOrigin = "anonymous";
