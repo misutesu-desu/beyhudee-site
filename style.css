@@ -243,3 +243,6 @@ td { border-top: 2px solid var(--ink); padding: 8px 12px 8px 0; white-space: now
 .fight-grid img { display: block; width: 100%; height: auto; border: 3px solid #000; border-radius: 12px; box-shadow: 8px 8px 0 var(--yellow); }
 .fight-grid figcaption { font-size: 14px; margin-top: 14px; }
 @media (max-width: 960px) { .fight-grid { grid-template-columns: 1fr; } }
+
+.living { position: relative; height: clamp(360px, 48vw, 640px); background: #160d24; border-top: var(--line); overflow: hidden; }
+.living canvas { display: block; width: 100%; height: 100%; }
