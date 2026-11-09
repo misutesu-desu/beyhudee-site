@@ -106,7 +106,30 @@
     const float TILT = -.30;
     vec2 rot(vec2 p, float r){ float c = cos(r), s = sin(r); return vec2(c * p.x - s * p.y, s * p.x + c * p.y); }
     float pulse(float t, float c, float w){ return smoothstep(w, 0., abs(fract(t - c + .5) - .5)); }
-    float eye(vec2 uv, vec2 c, out vec2 e){ e = rot(uv - c, -TILT) / vec2(.078, .050); return smoothstep(1., .72, length(e)); }
+    float curve(vec3 p, float s){ return p.x * (1. - s) * (1. - 2. * s) + p.y * 4. * s * (1. - s) + p.z * s * (2. * s - 1.); }
+    float blinkAt(float t, float c){ float d = fract(t - c + .5) - .5; return smoothstep(-.010, 0., d) * smoothstep(.024, .004, d); }
+    vec4 lid(vec2 uv, vec4 col, float x0, float x1, vec3 top, vec3 bot, vec2 sk, float b){
+      float s = (uv.x - x0) / (x1 - x0);
+      if (s < 0. || s > 1.) return col;
+      float taper = smoothstep(0., .12, s) * smoothstep(1., .88, s);
+      float yT = curve(top, s), yB = curve(bot, s);
+      float L = mix(yT, mix(yT, yB, .74), b * taper);
+      float d = L - yT, w = .013, w2 = .005, y = uv.y;
+      if (y < yT - w * 1.5 || y > yB + .006) return col;
+      float span = max(yB - (L + w2), .001);
+      vec4 eyeCol = texture2D(tex, vec2(uv.x, yT + w2 + (y - (L + w2)) / span * (yB - (yT + w2))));
+      vec4 lash = texture2D(tex, vec2(uv.x, y - d));
+      vec4 skin = texture2D(tex, sk);
+      vec4 lidSkin = skin;
+      lidSkin.rgb *= mix(1., .95, smoothstep(L - .035, L - w, y));
+      vec4 c = mix(lidSkin, lash, smoothstep(L - w - .003, L - w + .003, y));
+      float below = smoothstep(L + w2 - .002, L + w2 + .002, y);
+      eyeCol.rgb = mix(eyeCol.rgb, skin.rgb, smoothstep(.72, 1., b));
+      c = mix(c, eyeCol, below);
+      float keep = smoothstep(yT - w - .003, yT - w + .003, y) * smoothstep(yB + .006, yB + .001, y);
+      c.a = col.a;
+      return mix(col, c, keep * smoothstep(0., .03, s) * smoothstep(1., .97, s));
+    }
     void main(){
       vec2 uv = v;
       float t = a / 6.2831853;
@@ -124,18 +147,10 @@
       m.y += wig * .022 * area * tip * tip;
       uv = MC + rot(m, TILT);
       vec4 col = texture2D(tex, uv);
-      float blink = pulse(t, .46, .016) + pulse(t, .53, .014);
-      blink = clamp(blink, 0., 1.);
-      if (blink > .001) {
-        vec2 e1, e2;
-        float m1 = eye(uv, vec2(.345, .470), e1);
-        float m2 = eye(uv, vec2(.608, .376), e2);
-        vec3 skin = vec3(.93, .79, .74);
-        col.rgb = mix(col.rgb, skin, m1 * blink);
-        col.rgb = mix(col.rgb, skin, m2 * blink);
-        float l1 = smoothstep(.20, .05, abs(e1.y - .10 + e1.x * e1.x * .35)) * smoothstep(1.05, .85, abs(e1.x));
-        float l2 = smoothstep(.20, .05, abs(e2.y - .10 + e2.x * e2.x * .35)) * smoothstep(1.05, .85, abs(e2.x));
-        col.rgb = mix(col.rgb, vec3(.14, .10, .17), max(l1, l2) * blink);
+      float b = clamp(blinkAt(t, .16) + blinkAt(t, .60) + blinkAt(t, .645), 0., 1.);
+      if (b > .001) {
+        col = lid(uv, col, .272, .418, vec3(.452, .432, .432), vec3(.460, .508, .472), vec2(.370, .415), b);
+        col = lid(uv, col, .515, .652, vec3(.400, .353, .362), vec3(.418, .428, .395), vec2(.370, .415), b);
       }
       float fade = smoothstep(0., .13, v.x) * smoothstep(1., .87, v.x);
       col.a *= mix(1., fade, smoothstep(.45, .75, v.y));
