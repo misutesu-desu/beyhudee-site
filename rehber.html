@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyhudee rehberi</title>
+<meta name="description" content="Beyhudee botunun nadirlik oranları, kakera formülü, 27 savaşçısı ve komutları.">
+<meta property="og:title" content="Beyhudee rehberi: bütün oranlar">
+<meta property="og:description" content="Karakter çektiren, dövüştüren ve sunucunu koruyan Discord botu. Bütün oranları açıkça yazılı.">
+<meta property="og:url" content="https://beyhudee.misutesu.com/rehber.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://beyhudee.misutesu.com/assets/duel.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffc42e">
+<link rel="canonical" href="https://beyhudee.misutesu.com/rehber.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23ffc42e'/%3E%3Ccircle cx='16' cy='20' r='7' fill='none' stroke='%231a1410' stroke-width='3.5'/%3E%3Cpath d='M16 3l5 6-5 4-5-4z' fill='%23f2452e' stroke='%231a1410' stroke-width='1.5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="./"><img src="https://cdn.discordapp.com/app-icons/1403088729542754476/5ee74bbc23884167918ec7cd42c73c08.png?size=256" alt="" width="36" height="36">Beyhudee</a>
+    <nav aria-label="Bölümler">
+      <a href="#oranlar">Oranlar</a>
+      <a href="#savascilar">Savaşçılar</a>
+      <a href="#komutlar">Komutlar</a>
+      <a href="./">Ana sayfa</a>
+    </nav>
+    <a class="btn small primary" href="https://discord.gg/BH3YWfha8">Discord'a gel</a>
+  </div>
+</header>
+
+<main>
+  <section class="wrap page-head">
+    <h1>Bütün oranlar burada.</h1>
+    <p class="lead">Sayılar botun Beyhudee modundaki ayarları.</p>
+  </section>
+
+  <section id="oranlar" class="wrap block">
+    <h2>Çekim, yüzük ve kakera</h2>
+
+    <div class="rule-grid">
+      <div class="panel tiers">
+        <h3>Nadirlik</h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Kademe</th><th>Sıra</th><th>Karakter</th><th>Kart başına</th><th>Ortak Av gücü</th></tr></thead>
+            <tbody>
+              <tr><td><span class="tier t-SSS">SSS</span></td><td>1-50</td><td>50</td><td>%0,25</td><td>+%8</td></tr>
+              <tr><td><span class="tier t-SS">SS</span></td><td>51-300</td><td>250</td><td>%1,25</td><td>+%6</td></tr>
+              <tr><td><span class="tier t-S">S</span></td><td>301-1.000</td><td>700</td><td>%3,5</td><td>+%4</td></tr>
+              <tr><td><span class="tier t-A">A</span></td><td>1.001-3.000</td><td>2.000</td><td>%10</td><td>+%2</td></tr>
+              <tr><td><span class="tier t-B">B</span></td><td>3.001-8.000</td><td>5.000</td><td>%25</td><td>+%1</td></tr>
+              <tr><td><span class="tier t-C">C</span></td><td>8.001 ve sonrası</td><td>12.000</td><td>%60</td><td>yok</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fine">Her kart katalogdan eşit şansla gelir, yani bir çekimde S ve üstü görme ihtimalin yaklaşık %14. Dileklerin ve haftanın tema serisi bu oranı senin lehine biraz bozar. Tema serisinin payı %15.</p>
+      </div>
+
+      <div class="panel yellow">
+        <h3>Çekim hakkı</h3>
+        <p class="big-num">20 dk</p>
+        <p>Her 20 dakikada 1 hak dolar, depo 12'de durur. Görev ve ödüllerle birikim 40'a kadar çıkar.</p>
+        <ul class="plain" id="grants">
+          <li><span>Günlük giriş</span><b>+3, 7. gün +10</b></li>
+          <li><span>Günlük görev, günde 3 tane</span><b>tanesi +2 ya da +3</b></li>
+          <li><span>Sohbet görevi</span><b>kademeli, günlük sınırlı</b></li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3>Yüzük</h3>
+        <p class="big-num">3 sa</p>
+        <p>Evlenmek 1 yüzük harcar. 3 saatte 1 tane dolar, en fazla 5 birikir.</p>
+      </div>
+
+      <div class="panel pink">
+        <h3>Garanti</h3>
+        <p class="big-num">10.</p>
+        <p>S ve üstü görmeden 9 çekim geçerse 10. çekimde kartlardan biri S+ olur. S+ gelince sayaç sıfırlanır.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Seçim ve açık artırma</h3>
+        <p class="big-num">20 + 30 sn</p>
+        <p>Çeken kişinin 20 saniyesi var. Seçilmeyen iki kart 30 saniye kakera açık artırmasına girer. Açılış değerin %20'si, her artış %10, tavan 3 katı.</p>
+      </div>
+
+      <div class="panel calc">
+        <h3>Kakera formülü</h3>
+        <code>(25000 × (sıra + 70)^-0,75 + 20) × (1 + evli karakter / 5500)</code>
+        <label for="rank">Bir sıra dene</label>
+        <input id="rank" type="number" min="1" max="20000" value="244" inputmode="numeric">
+        <p id="calc-out" class="calc-out" aria-live="polite"></p>
+        <p class="fine">Boş sunucu için. Sıra, evlilik ve beğeni sıralarının ortalaması. Anahtarlar üstüne bonus ekler.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="savascilar" class="band accent-band">
+    <div class="wrap">
+      <h2>27 savaşçı. Birini kendine yakıştır.</h2>
+      <div class="fight-rules">
+        <p>27 savaşçı, 3'e 3, sıra tabanlı. Seçimler gizli, önce öncelik sonra hız sayılır. Şans yalnızca kritik vuruşta var. Savun art arda kullanılamaz, 25. turda ani ölüm başlar.</p>
+        <p>Düello, dereceli ve turnuvada güç eşittir. Haremin yalnızca Ortak Av'da işe yarar: evli gün ve birlikte savaş başına +%0,5 bağ, üst sınır %20. Üstüne nadirlik ve aynı seriden iki görünüm için +%5.</p>
+      </div>
+      <p class="modes"><span>Dereceli düello</span><span>Draft</span><span>Kaos</span><span>2v2</span><span>Yapay zekâ</span><span>Hayatta kalma kulesi</span><span>Boss baskını</span><span>Turnuva</span><span>Sunucular arası sıra</span><span>Otomatik savaş</span></p>
+
+      <div class="filter" id="role-filter" role="group" aria-label="Role göre süz"></div>
+      <div class="roster" id="roster"></div>
+    </div>
+  </section>
+
+  <section id="komutlar" class="band yellow-band">
+    <div class="wrap">
+      <h2>Komutlar</h2>
+      <div class="filter" id="cmd-tabs" role="group" aria-label="Komut grubu"></div>
+      <p class="cmd-note" id="cmd-note"></p>
+      <div class="cmd-list" id="cmd-list"></div>
+      <p class="fine dark">Komutların önek hali $ ile başlar. Slash karşılıkları ve İngilizce adları da var. Yönetim komutları Sunucuyu Yönet yetkisi ister.</p>
+    </div>
+  </section>
+
+  <section class="band end">
+    <div class="wrap">
+      <h2>Sunucuda görüşürüz.</h2>
+      <p>Makima'yı başkası kapmadan gel.</p>
+      <a class="btn big primary" href="https://discord.gg/BH3YWfha8">Discord'a gel</a>
+    </div>
+  </section>
+</main>
+
+<script src="data.js"></script>
+<script src="shared.js"></script>
+<script src="guide.js"></script>
+</body>
+</html>

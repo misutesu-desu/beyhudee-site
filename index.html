@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyhudee</title>
+<meta name="description" content="Karakter çektiren, dövüştüren ve sunucunu koruyan Discord botu. Bütün oranları açıkça yazılı.">
+<meta property="og:title" content="Beyhudee: Makima istedin, Shrek çıktı">
+<meta property="og:description" content="Karakter çektiren, dövüştüren ve sunucunu koruyan Discord botu. Bütün oranları açıkça yazılı.">
+<meta property="og:url" content="https://beyhudee.misutesu.com/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://beyhudee.misutesu.com/assets/duel.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffc42e">
+<link rel="canonical" href="https://beyhudee.misutesu.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23ffc42e'/%3E%3Ccircle cx='16' cy='20' r='7' fill='none' stroke='%231a1410' stroke-width='3.5'/%3E%3Cpath d='M16 3l5 6-5 4-5-4z' fill='%23f2452e' stroke='%231a1410' stroke-width='1.5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="#"><img src="https://cdn.discordapp.com/app-icons/1403088729542754476/5ee74bbc23884167918ec7cd42c73c08.png?size=256" alt="" width="36" height="36">Beyhudee</a>
+    <nav aria-label="Bölümler">
+      <a href="#cekim">Çekim</a>
+      <a href="#koruma">Koruma</a>
+      <a href="#dovus">Dövüş</a>
+      <a href="#sorular">Sorular</a>
+      <a href="rehber.html">Rehber</a>
+    </nav>
+    <a class="btn small primary" href="https://discord.gg/BH3YWfha8">Discord'a gel</a>
+  </div>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <div class="hero-text">
+      <p class="dict"><b>beyhude</b> <i>sıfat</i> Boşuna, nafile.</p>
+      <h1>Makima istedin. <mark>Shrek çıktı.</mark></h1>
+      <p class="lead">Discord'da karakter topladığın bir bot. Aynı bot sunucunu da koruyor, dövüş de cabası.</p>
+      <div class="cta">
+        <a class="btn big primary" href="https://discord.gg/BH3YWfha8">Discord'a gel</a>
+        <a class="btn big" href="#cekim">Önce çekim yap</a>
+      </div>
+      <p class="note">Şimdilik tek adres bu sunucu. Şubemiz yoktur.</p>
+      <div class="bio">
+        <img src="https://cdn.discordapp.com/app-icons/1403088729542754476/5ee74bbc23884167918ec7cd42c73c08.png?size=256" alt="Beyhudee'nin profil resmi: bıyıklı bir karakter" width="72" height="72">
+        <div>
+          <p>Merhaba, ben Beyhudee. Seni korumak için zamanı defalarca geri sardım, bıyık da o sırada çıktı.</p>
+          <p class="bio-by">Mystes yaptı, ben sadece bıyığı taşıyorum.</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-cards" id="hero-cards" aria-hidden="true"></div>
+  </section>
+
+  <section id="cekim" class="band ink">
+    <div class="wrap roll-grid">
+      <div class="roll-text">
+        <h2>Önce burada elini ısıt.</h2>
+        <p>Kartlar botun kataloğundan, çıkma şansı da botla aynı.</p>
+        <p>Burada 70 karakter var, sunucuda 20.000. Favorin orada bir yerde.</p>
+      </div>
+
+      <div class="discord" aria-label="Çekim denemesi">
+        <div class="dc-bar"><span># çekim-kanalı</span><span class="dc-stats">Çekim <b id="rolls">12</b> · Yüzük <b id="rings">5</b></span></div>
+        <div class="dc-body">
+          <div class="dc-msg-head"><img class="dc-avatar" src="https://cdn.discordapp.com/app-icons/1403088729542754476/5ee74bbc23884167918ec7cd42c73c08.png?size=256" alt=""><span class="dc-name">Beyhudee</span><span class="dc-tag">BOT</span></div>
+          <p id="msg" class="dc-text" aria-live="polite">Hakların dolu. Tadını çıkar, 12 çekim sürer.</p>
+          <div id="cards" class="cards"></div>
+          <div class="dc-actions">
+            <button id="roll" class="dc-primary" type="button">$w ile çek</button>
+            <button id="reset" class="dc-plain" type="button" hidden>Haklarımı geri ver</button>
+            <span id="pity" class="dc-pity"></span>
+          </div>
+          <p id="harem" class="dc-harem" hidden></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="koruma" class="wrap block">
+    <h2>Yetkili arkadaşın da dahil.</h2>
+    <p class="intro">Moderasyon için ayrı bot eklemen gerekmiyor.</p>
+    <dl class="guard-list">
+      <div class="lead-row"><dt>Log kanalları</dt><dd>Mesaj, rol, kanal, üye, davet, ses ve ceza kayıtları. Yapanın adı da yazar. İnkâr zorlaşır.</dd></div>
+      <div class="lead-row"><dt>Otomod</dt><dd>Flood, tekrar, toplu etiket, caps ve reklam linkini yakalar. Israr edenin cezası büyür.</dd></div>
+      <div><dt>Susturma</dt><dd>Süreli. Rolleri alınır, yalnızca jail kanalına yazar, süre dolunca her şey geri gelir. Pişmanlık opsiyonel.</dd></div>
+      <div><dt>Uyarı</dt><dd>Kayıt tutar, kişiye DM atar, kaçıncı uyarı olduğunu yazar.</dd></div>
+      <div><dt>Sunucu etiketi</dt><dd>Yasaklı topluluğun etiketini takanı banlar, sunucunun etiketini takana rol verir.</dd></div>
+      <div><dt>Ses yasağı</dt><dd>Kişi ses kanalına girdiği anda bağlantısı kesilir.</dd></div>
+      <div><dt>Partner ve yetkili takibi</dt><dd>Partnerleri sayar, yetkililere XP verir, seviyeyi resimle gösterir.</dd></div>
+      <div><dt>Sayaç, otorol, doğum günü</dt><dd>Üye sayısı kanalı, girişte otomatik rol ve doğum günü kutlaması.</dd></div>
+    </dl>
+  </section>
+
+  <section id="dovus" class="band accent-band">
+    <div class="wrap">
+      <h2>Haremin değil, kafan dövüşür.</h2>
+      <div class="fight-grid">
+        <div>
+          <p class="fight-short">Karakter toplamaktan sıkılırsan 27 savaşçıyla 3'e 3 dövüş de var.</p>
+          <a class="btn big" href="rehber.html#savascilar">Dövüş rehberi</a>
+        </div>
+        <figure>
+          <img src="assets/duel.png" width="1240" height="660" loading="lazy" alt="Beyhudee dövüş sahnesi: üçüncü turda Makima ile Satoru Gojo karşı karşıya">
+          <figcaption>Bot her turda bu sahneyi çizer.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="sorular" class="wrap block">
+    <h2>Sorular</h2>
+    <div class="faq">
+      <div><h3>Beyhude ne demek?</h3><p>Boşuna demek. Reklam ekibimiz itiraz etti ama reklam ekibimiz yok.</p></div>
+      <div><h3>Sonunda neden iki e var?</h3><p>İkinci e bonus. Bedava, premium istemiyor.</p></div>
+      <div><h3>Para verince güçlenir miyim?</h3><p>Hayır. Premium sezon yolu, kozmetik ve rozet verir. Çekim ya da dövüş gücü vermez.</p></div>
+      <div><h3>Mudae'ye benziyor mu?</h3><p>Toplama kuralları ve kakera formülü ondan uyarlandı, katalog da oradan geliyor. Üç kartlı çekim, açık artırma, dövüş ve koruma buraya özgü.</p></div>
+      <div><h3>Sunucu klasik düzene geçebilir mi?</h3><p>Evet. Klasik modda saatte 10 çekim, kartta 45 saniye ve 3 saatte bir evlilik var. Rehberdeki oranlar Beyhudee modu için.</p></div>
+      <div><h3>İngilizce biliyor mu?</h3><p>Biliyor. Sana özel yanıtları kendi Discord dilinde yazar.</p></div>
+    </div>
+  </section>
+
+  <section class="band end">
+    <div class="wrap">
+      <h2>Sunucuda görüşürüz.</h2>
+      <p>Makima'yı başkası kapmadan gel.</p>
+      <a class="btn big primary" href="https://discord.gg/BH3YWfha8">Discord'a gel</a>
+    </div>
+  </section>
+</main>
+
+<script src="data.js"></script>
+<script src="shared.js"></script>
+<script src="home.js"></script>
+</body>
+</html>
